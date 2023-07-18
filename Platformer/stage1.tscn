@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlc67x1otd4mj"]
+
+[ext_resource type="Script" path="res://stage1.gd" id="1_guv2i"]
+[ext_resource type="Script" path="res://Character.gd" id="1_yllcr"]
+[ext_resource type="PackedScene" uid="uid://chmr4u43058mx" path="res://enemy.tscn" id="2_cpwk0"]
+[ext_resource type="PackedScene" uid="uid://bl7w4jij6iiyp" path="res://coin.tscn" id="4_y78pd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcree"]
+size = Vector2(1161.5, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aswym"]
+size = Vector2(38.5, 39)
+
+[node name="Stage1" type="Node2D"]
+script = ExtResource("1_guv2i")
+
+[node name="Platform" type="StaticBody2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Platform"]
+position = Vector2(578.25, 626)
+shape = SubResource("RectangleShape2D_tcree")
+
+[node name="Rect" type="ColorRect" parent="Platform"]
+offset_left = -3.0
+offset_top = 602.0
+offset_right = 1158.0
+offset_bottom = 647.0
+
+[node name="Character" type="CharacterBody2D" parent="."]
+position = Vector2(558, 272)
+script = ExtResource("1_yllcr")
+
+[node name="Shape" type="CollisionShape2D" parent="Character"]
+position = Vector2(19.25, 20)
+shape = SubResource("RectangleShape2D_aswym")
+
+[node name="Rect" type="ColorRect" parent="Character"]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0, 0, 1, 1)
+
+[node name="Camera" type="Camera2D" parent="Character"]
+position_smoothing_enabled = true
+
+[node name="Enemy" parent="." instance=ExtResource("2_cpwk0")]
+position = Vector2(743, 467)
+can_tread = true
+
+[node name="Coin" parent="." instance=ExtResource("4_y78pd")]
+offset_left = 495.0
+offset_top = 528.0
+offset_right = 535.0
+offset_bottom = 568.0
+
+[node name="Coin2" parent="." instance=ExtResource("4_y78pd")]
+offset_left = 656.0
+offset_top = 453.0
+offset_right = 696.0
+offset_bottom = 493.0
+
+[node name="Coin3" parent="." instance=ExtResource("4_y78pd")]
+offset_left = 642.0
+offset_top = 532.0
+offset_right = 682.0
+offset_bottom = 572.0
+
+[node name="Coin4" parent="." instance=ExtResource("4_y78pd")]
+offset_left = 433.0
+offset_top = 441.0
+offset_right = 473.0
+offset_bottom = 481.0
