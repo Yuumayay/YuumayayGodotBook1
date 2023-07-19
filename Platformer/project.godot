@@ -18,3 +18,4 @@ config/icon="res://icon.svg"
 [autoload]
 
 Audio="*res://audio.tscn"
+CoinCount="*res://coin_count.tscn"

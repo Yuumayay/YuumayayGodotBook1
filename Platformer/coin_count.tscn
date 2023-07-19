@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp6hihd8hyytq"]
+
+[ext_resource type="Script" path="res://coin_count.gd" id="1_63ena"]
+
+[node name="CoinCount" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_63ena")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 75
+text = "00"

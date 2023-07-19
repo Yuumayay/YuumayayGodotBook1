@@ -10,5 +10,6 @@ func _ready():
 
 func _on_area_body_entered(body):
 	if body.name == "Character":
+		CoinCount.coin_add(1)
 		Audio.get_node("Coin").play()
 		queue_free()
