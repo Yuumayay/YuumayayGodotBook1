@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi2le2wpvd58k"]
+[gd_scene load_steps=7 format=3 uid="uid://bi2le2wpvd58k"]
 
 [ext_resource type="AudioStream" uid="uid://bdahbvlx57saj" path="res://PrettySky.ogg" id="1_fahvp"]
 [ext_resource type="AudioStream" uid="uid://dl56bd1kanjm3" path="res://Jump.ogg" id="2_ey0tu"]
 [ext_resource type="AudioStream" uid="uid://bkuf2wsh18ix0" path="res://Hit.ogg" id="3_4vvwx"]
 [ext_resource type="AudioStream" uid="uid://d0vuenmwhnrcs" path="res://Coin.ogg" id="4_puk0s"]
+[ext_resource type="AudioStream" uid="uid://dp7a8imkojg5i" path="res://Damage.ogg" id="5_s2j00"]
+[ext_resource type="AudioStream" uid="uid://jmhs5bporvo" path="res://Heal.ogg" id="6_yxm6k"]
 
 [node name="Audio" type="Node"]
 
@@ -21,3 +23,9 @@ volume_db = 10.306
 [node name="Coin" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_puk0s")
 volume_db = 2.811
+
+[node name="Damage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_s2j00")
+
+[node name="Heal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_yxm6k")
