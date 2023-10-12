@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3 uid="uid://b611ldgy0cad1"]
+
+[ext_resource type="Texture2D" uid="uid://bqpay8hyuxrxx" path="res://image/regular-omochi-icon.png" id="1_mrcf8"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 27.0
+offset_top = 501.0
+offset_right = 233.0
+offset_bottom = 622.0
+
+[node name="Icon" type="TextureRect" parent="Button"]
+layout_mode = 0
+offset_top = -22.0
+offset_right = 151.0
+offset_bottom = 124.0
+texture = ExtResource("1_mrcf8")
+expand_mode = 1
+
+[node name="Cost" type="Label" parent="Button"]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 57.0
+offset_right = 202.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(1, 0.580392, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "50P"
+
+[node name="MoneyCount" type="Label" parent="."]
+offset_left = 914.0
+offset_top = 5.0
+offset_right = 1138.0
+offset_bottom = 77.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 50
+text = "0P / 100P"
+horizontal_alignment = 2
+
+[node name="Win" type="Label" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.756863, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 150
+text = "勝利！"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lose" type="Label" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.596078, 0.831373, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 150
+text = "敗北..."
+horizontal_alignment = 1
+vertical_alignment = 1

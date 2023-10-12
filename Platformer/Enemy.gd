@@ -23,3 +23,10 @@ func _on_area_body_entered(body):
 		UI.heal(10)
 		Audio.get_node("Hit").play()
 		queue_free()
+
+
+func _on_enemy_hitbox_body_entered(body):
+	if body.name == "Character":
+		UI.damage(20)
+		body.knockback()
+

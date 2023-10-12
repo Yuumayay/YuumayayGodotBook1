@@ -1,24 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://chmr4u43058mx"]
+[gd_scene load_steps=5 format=3 uid="uid://chmr4u43058mx"]
 
 [ext_resource type="Script" path="res://Enemy.gd" id="1_txr0h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qj06p"]
-size = Vector2(40.5, 39)
+size = Vector2(32, 39)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wkkc1"]
 size = Vector2(32, 7)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ppem"]
+size = Vector2(40, 32)
+
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_txr0h")
-
-[node name="Shape" type="CollisionShape2D" parent="."]
-position = Vector2(20.25, 19)
-shape = SubResource("RectangleShape2D_qj06p")
 
 [node name="Rect" type="ColorRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
 color = Color(1, 0, 0, 1)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(20, 20)
+shape = SubResource("RectangleShape2D_qj06p")
 
 [node name="Area" type="Area2D" parent="."]
 
@@ -26,4 +29,11 @@ color = Color(1, 0, 0, 1)
 position = Vector2(20, -0.5)
 shape = SubResource("RectangleShape2D_wkkc1")
 
+[node name="EnemyHitbox" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="EnemyHitbox"]
+position = Vector2(20, 24)
+shape = SubResource("RectangleShape2D_1ppem")
+
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
+[connection signal="body_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_body_entered"]
