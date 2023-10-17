@@ -20,7 +20,6 @@ func _physics_process(delta):
 
 func _on_area_body_entered(body):
 	if body.name == "Character" and can_tread:
-		UI.heal(10)
 		Audio.get_node("Hit").play()
 		queue_free()
 

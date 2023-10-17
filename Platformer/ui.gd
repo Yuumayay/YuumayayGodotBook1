@@ -18,6 +18,12 @@ func damage(value):
 	Audio.get_node("Damage").play()
 	hp -= value
 	health.value = hp
+	if hp <= 0:
+		coin = 0
+		hp = 100
+		health.value = hp
+		label.text = "00"
+		get_tree().change_scene_to_file("res://stage1.tscn")
 
 func heal(value):
 	Audio.get_node("Heal").play()

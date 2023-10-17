@@ -1,20 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bl7w4jij6iiyp"]
+[gd_scene load_steps=4 format=3 uid="uid://bl7w4jij6iiyp"]
 
+[ext_resource type="Texture2D" uid="uid://bnn8vxkkkj33l" path="res://coin.png" id="1_12krq"]
 [ext_resource type="Script" path="res://Coin.gd" id="1_jr3im"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_07h25"]
 size = Vector2(40, 40.5)
 
-[node name="Coin" type="ColorRect"]
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(1, 1, 0, 1)
+[node name="Coin" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_12krq")
 script = ExtResource("1_jr3im")
 
 [node name="Area" type="Area2D" parent="."]
 
 [node name="Shape" type="CollisionShape2D" parent="Area"]
-position = Vector2(20, 20.25)
 shape = SubResource("RectangleShape2D_07h25")
 
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
