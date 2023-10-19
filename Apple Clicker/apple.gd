@@ -1,6 +1,7 @@
 extends Sprite2D
 
 var apple: int = 0
+var upgrade_apple_tree: int = 0
 var apple_per_sec: int = 0
 var apple_per_click: int = 1
 @onready var label: Label = get_parent().get_node("appletext")
@@ -22,10 +23,17 @@ func _input(event):
 func _on_button_pressed():
 	if apple >= 10:
 		apple -= 10
-		apple_per_sec += 1
+		upgrade_apple_tree += 1
+		apple_per_sec += 5
+		
+		var buy_button: Button = get_parent().get_node("Button")
+		buy_button.text = "リンゴの木 × "+ str(upgrade_apple_tree) +"\n(10 apples)"
 
 
 func _on_button_2_pressed():
 	if apple >= 100:
 		apple -= 100
 		apple_per_click += 1
+
+		var buy_button: Button = get_parent().get_node("Button2")
+		buy_button.text = "クリックパワー × "+ str(apple_per_click) +"\n(100 apples)"

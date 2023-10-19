@@ -29,17 +29,18 @@ text = "オムライス"
 
 [node name="Button" type="Button" parent="."]
 offset_right = 309.0
-offset_bottom = 69.0
+offset_bottom = 92.0
 theme_override_font_sizes/font_size = 30
-text = "Apple tree"
+text = "リンゴの木 × 0
+(10 apples)"
 
 [node name="Button2" type="Button" parent="."]
-offset_left = 2.0
-offset_top = 87.0
-offset_right = 311.0
-offset_bottom = 156.0
+offset_top = 116.0
+offset_right = 309.0
+offset_bottom = 185.0
 theme_override_font_sizes/font_size = 30
-text = "Per click"
+text = "クリックパワー x 0
+(100 apples)"
 
 [connection signal="pressed" from="Button" to="apple" method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="apple" method="_on_button_2_pressed"]
