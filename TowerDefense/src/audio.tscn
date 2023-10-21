@@ -10,3 +10,4 @@ stream = ExtResource("1_eddee")
 
 [node name="Fight1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_e5yaa")
+volume_db = -12.506

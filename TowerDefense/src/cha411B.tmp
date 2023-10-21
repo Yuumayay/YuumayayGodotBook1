@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://bascj6pfsrp7r"]
+[gd_scene load_steps=37 format=3 uid="uid://bascj6pfsrp7r"]
 
 [ext_resource type="Texture2D" uid="uid://ctajm7iq5k2ir" path="res://image/all.png" id="1_ingrs"]
 [ext_resource type="Script" path="res://src/character.gd" id="2_ren7c"]
+[ext_resource type="Script" path="res://src/create_spritesheet.gd" id="3_kcexm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7c47a"]
 atlas = ExtResource("1_ingrs")
@@ -237,8 +238,7 @@ size = Vector2(218, 149)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_8sic2")
 animation = &"idle"
-frame = 9
-frame_progress = 0.595303
+frame_progress = 0.789591
 offset = Vector2(0, -100)
 flip_h = true
 script = ExtResource("2_ren7c")
@@ -270,6 +270,9 @@ debug_color = Color(0.992157, 0, 0.243137, 0.419608)
 [node name="Shape" type="CollisionShape2D" parent="CharacterHitBox"]
 position = Vector2(2, -52.25)
 shape = SubResource("RectangleShape2D_cx3r6")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("3_kcexm")
 
 [connection signal="area_entered" from="AttackStart" to="." method="_on_attack_start_area_entered"]
 [connection signal="area_entered" from="AttackHitBox" to="." method="_on_attack_hit_box_area_entered"]
