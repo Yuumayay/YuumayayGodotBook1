@@ -1,12 +1,14 @@
 extends Sprite2D
 
+var falldown : bool = false
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var speed_y : float = 0.0
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-
+func _process(delta):
+	# falldownがtrueなら、コインを落下させる
+	if falldown == true:
+		speed_y += gravity * delta
+		position.y += speed_y * delta
 
 func _on_area_body_entered(body):
 	if body.name == "Character":

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dlc67x1otd4mj"]
+[gd_scene load_steps=26 format=3 uid="uid://dlc67x1otd4mj"]
 
 [ext_resource type="Script" path="res://stage1.gd" id="1_guv2i"]
 [ext_resource type="Script" path="res://Character.gd" id="1_yllcr"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dvucnbnq0hokb" path="res://godou-san-dot.png" id="3_vh10f"]
 [ext_resource type="PackedScene" uid="uid://bl7w4jij6iiyp" path="res://coin.tscn" id="4_y78pd"]
 [ext_resource type="Texture2D" uid="uid://b8ucwtxuck60p" path="res://skybg.png" id="6_y7ogn"]
+[ext_resource type="PackedScene" uid="uid://clvegma4xptft" path="res://goal.tscn" id="8_ube3j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tcree"]
 size = Vector2(1161.5, 640)
@@ -199,3 +200,6 @@ motion_scale = Vector2(0.1, 0.1)
 position = Vector2(607, 232)
 scale = Vector2(4, 4)
 texture = ExtResource("6_y7ogn")
+
+[node name="Goal" parent="." instance=ExtResource("8_ube3j")]
+position = Vector2(1092, 587)

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://clvegma4xptft"]
+
+[ext_resource type="Texture2D" uid="uid://ck82e238rpcew" path="res://takarabako.png" id="1_0m6n8"]
+[ext_resource type="Script" path="res://Goal.gd" id="2_wyrym"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2c1hb"]
+size = Vector2(98, 48.25)
+
+[node name="Goal" type="Sprite2D"]
+texture = ExtResource("1_0m6n8")
+hframes = 2
+script = ExtResource("2_wyrym")
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="Area"]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_2c1hb")
+
+[connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]
