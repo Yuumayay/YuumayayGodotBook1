@@ -203,3 +203,11 @@ texture = ExtResource("6_y7ogn")
 
 [node name="Goal" parent="." instance=ExtResource("8_ube3j")]
 position = Vector2(1092, 587)
+
+[node name="Enemy2" parent="." instance=ExtResource("2_cpwk0")]
+position = Vector2(157, 475)
+can_tread = true
+
+[node name="Enemy3" parent="." instance=ExtResource("2_cpwk0")]
+position = Vector2(366, 466)
+can_tread = true

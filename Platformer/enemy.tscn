@@ -14,6 +14,7 @@ size = Vector2(40, 32)
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_txr0h")
+move_speed = 10
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1

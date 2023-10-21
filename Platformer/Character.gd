@@ -55,6 +55,9 @@ func _physics_process(delta):
 
 func knockback():
 	can_move = false
-	velocity = Vector2(-100, -300)
+	if sprite.flip_h == true:
+		velocity = Vector2(100, -300)
+	else:
+		velocity = Vector2(-100, -300)
 	await get_tree().create_timer(0.5).timeout
 	can_move = true
