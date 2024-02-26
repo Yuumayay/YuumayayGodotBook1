@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bh2tsq82346c"]
+
+[ext_resource type="Texture2D" uid="uid://bx5m3ubk64lx2" path="res://tank/tank_body.png" id="1_kc3ka"]
+[ext_resource type="Script" path="res://tank/tank.gd" id="1_ou16b"]
+[ext_resource type="Texture2D" uid="uid://2ug0y5sg0mqd" path="res://tank/tank_subbody.png" id="2_uf2kh"]
+[ext_resource type="Texture2D" uid="uid://cuml5lwqcxq4b" path="res://tank/tank_cannon.png" id="3_ev0gs"]
+[ext_resource type="Texture2D" uid="uid://diif4wot0k4ja" path="res://tank/tank_cannonbase.png" id="4_m2mht"]
+
+[node name="tank" type="CharacterBody2D"]
+script = ExtResource("1_ou16b")
+
+[node name="body" type="Node2D" parent="."]
+
+[node name="main" type="Sprite2D" parent="body"]
+modulate = Color(0.705882, 0.788235, 1, 1)
+texture = ExtResource("1_kc3ka")
+
+[node name="sub" type="Sprite2D" parent="body"]
+modulate = Color(0.52549, 0.603922, 1, 1)
+texture = ExtResource("2_uf2kh")
+
+[node name="cannon" type="Node2D" parent="."]
+
+[node name="cannon" type="Sprite2D" parent="cannon"]
+texture = ExtResource("3_ev0gs")
+
+[node name="base" type="Sprite2D" parent="cannon"]
+texture = ExtResource("4_m2mht")
+
+[node name="camera" type="Camera2D" parent="."]
+position_smoothing_enabled = true
