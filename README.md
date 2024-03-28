@@ -24,7 +24,7 @@ https://discord.gg/dpCNYKNJXV
 
 https://www.youtube.com/shorts/D02C0EogwWA
 
-### 書籍誤植情報
+### 誤植情報
 
 1. 2Dアクション編の134ページ
 
