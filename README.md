@@ -31,7 +31,7 @@ https://www.youtube.com/shorts/D02C0EogwWA
 knockback関数を以下に修正してください。
 
 誤）
-```
+```GDScript
 func knockback():
 	can_move = false
 	if sprite.flip_h == true:
@@ -44,7 +44,7 @@ func knockback():
 ```
 
 正）
-```
+```GDScript
 func knockback():
 	can_move = false
 	velocity = Vector2(100, -300)
@@ -54,7 +54,7 @@ func knockback():
 ```
 
 その後、152ページまで進めた後にknockback関数をこちらに修正してください。
-```
+```GDScript
 func knockback():
 	can_move = false
 	if sprite.flip_h == true:
