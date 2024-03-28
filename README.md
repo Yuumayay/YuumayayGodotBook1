@@ -23,3 +23,47 @@ https://discord.gg/dpCNYKNJXV
 2DプラットフォーマーRTAの動画URLです。
 
 https://www.youtube.com/shorts/D02C0EogwWA
+
+### 書籍誤植情報
+
+1. 2Dアクション編の134ページ
+
+knockback関数を以下に修正してください。
+
+誤）
+```
+func knockback():
+	can_move = false
+	if sprite.flip_h == true:
+		velocity = Vector2(100, -300)
+	else:
+		velocity = Vector2(-100, -300)
+
+	await get_tree().create_timer(0.5).timeout
+	can_move = true
+```
+
+正）
+```
+func knockback():
+	can_move = false
+	velocity = Vector2(100, -300)
+
+	await get_tree().create_timer(0.5).timeout
+	can_move = true
+```
+
+その後、152ページまで進めた後にknockback関数をこちらに修正してください。
+```
+func knockback():
+	can_move = false
+	if sprite.flip_h == true:
+		velocity = Vector2(100, -300)
+	else:
+		velocity = Vector2(-100, -300)
+
+	await get_tree().create_timer(0.5).timeout
+	can_move = true
+```
+
+
