@@ -47,13 +47,13 @@ func knockback():
 ```GDScript
 func knockback():
 	can_move = false
-	velocity = Vector2(100, -300)
+	velocity = Vector2(-100, -300)
 
 	await get_tree().create_timer(0.5).timeout
 	can_move = true
 ```
 
-その後、152ページまで進めた後にknockback関数をこちらに修正してください。
+その後、152ページまで進めた後にknockback関数を以下に修正してください。
 ```GDScript
 func knockback():
 	can_move = false
