@@ -32,7 +32,7 @@ https://www.youtube.com/shorts/D02C0EogwWA
 ## 誤植・修正情報
 
 ### 1. 2Dアクション編 ノックバック処理の修正
-- 2Dアクション編 128ページ
+- 128ページ
 
 関数の呼び出し順番を以下に修正してください。
 
@@ -52,7 +52,7 @@ func _on_enemy_hitbox_body_entered(body):
         body.knockback()
 ```
 
-- 2Dアクション編 134ページ
+- 134ページ
 
 knockback関数を以下に修正してください。
 
@@ -92,4 +92,19 @@ func knockback():
 	can_move = true
 ```
 
+### 2. 2Dアクション編 インデントが消えている
+- 182ページ 20行目
 
+インデントが消えている誤植がありました。一つ前の行と同じインデントに修正してください。
+
+誤）
+```GDScript
+		await get_tree().create_timer(3).timeout
+get_tree().change_scene_to_file("res://stage1.tscn")
+```
+
+正）
+```GDScript
+		await get_tree().create_timer(3).timeout
+		get_tree().change_scene_to_file("res://stage1.tscn")
+```
