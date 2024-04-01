@@ -1,3 +1,5 @@
+## ゆるっとはじめるGodot Engineゲームプログラミング入門編①～③サポートサイト
+
 ### 説明
 
 ここは『ゆるっとはじめるGodot Engineゲームプログラミング』のサポートサイトです。
@@ -25,11 +27,10 @@ https://discord.gg/dpCNYKNJXV
 https://www.youtube.com/shorts/D02C0EogwWA
 
 
-### 誤植・修正情報
+## 誤植・修正情報
 
-1. 2Dアクション編のノックバック処理の修正
-   
-1.1. 2Dアクション編の128ページ
+### 1. 2Dアクション編 ノックバック処理の修正
+- 2Dアクション編 128ページ
 
 関数の呼び出し順番を以下に修正してください。
 
@@ -49,7 +50,7 @@ func _on_enemy_hitbox_body_entered(body):
         body.knockback()
 ```
 
-1.2. 2Dアクション編の134ページ
+- 2Dアクション編 134ページ
 
 knockback関数を以下に修正してください。
 
