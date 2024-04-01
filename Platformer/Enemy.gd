@@ -26,6 +26,6 @@ func _on_area_body_entered(body):
 
 func _on_enemy_hitbox_body_entered(body):
 	if body.name == "Character":
-		UI.damage(20)
 		body.knockback()
+		UI.damage(20)
 
