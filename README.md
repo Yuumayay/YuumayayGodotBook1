@@ -1,8 +1,10 @@
 ## ゆるっとはじめるGodot Engineゲームプログラミング入門編①～③サポートサイト
 
+![hyoshi1](https://github.com/Yuumayay/YuumayayGodotBook1/assets/3530659/b9804073-3a47-4e64-9179-479f3696c5c7)
+
 ### 説明
 
-ここは『ゆるっとはじめるGodot Engineゲームプログラミング』のサポートサイトです。
+ここは『ゆるっとはじめるGodot Engineゲームプログラミング入門編①～③』のサポートサイトです。
 
 緑の「Code」ボタンをクリックしたのちに「Download ZIP」をクリックしてZIPファイルをダウンロードして展開してください。
 
