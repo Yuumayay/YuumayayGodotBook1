@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5wpe713ro1sr"]
+[gd_scene load_steps=6 format=3 uid="uid://b5wpe713ro1sr"]
 
 [ext_resource type="Texture2D" uid="uid://dkxfu53y5sacx" path="res://base/bg_grid.png" id="1_g0uoq"]
 [ext_resource type="Script" path="res://base/main.gd" id="1_y8qel"]
+[ext_resource type="PackedScene" uid="uid://cj71jrc87trji" path="res://exp/exp.tscn" id="3_lfyap"]
+[ext_resource type="Texture2D" uid="uid://buamfr3s2fef1" path="res://ui/expbar_empty.png" id="4_pa1yc"]
+[ext_resource type="Texture2D" uid="uid://pepgq05w063c" path="res://ui/expbar_full.png" id="5_qeakj"]
 
 [node name="main" type="Node"]
 script = ExtResource("1_y8qel")
@@ -19,3 +22,53 @@ stretch_mode = 1
 [node name="bullets" type="Node2D" parent="."]
 
 [node name="targets" type="Node2D" parent="."]
+
+[node name="exps" type="Node2D" parent="."]
+
+[node name="exp" parent="." instance=ExtResource("3_lfyap")]
+position = Vector2(213, 169)
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="expbar" type="TextureProgressBar" parent="ui"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -78.0
+offset_right = 32.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 0
+nine_patch_stretch = true
+texture_under = ExtResource("4_pa1yc")
+texture_progress = ExtResource("5_qeakj")
+
+[node name="exp" type="Label" parent="ui"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -55.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0.298039, 0.298039, 0.478431, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 40
+text = "0 / 10"
+horizontal_alignment = 1
+
+[node name="level" type="Label" parent="ui"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -155.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0.298039, 0.298039, 0.478431, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 70
+text = "Lv 01"
+horizontal_alignment = 1

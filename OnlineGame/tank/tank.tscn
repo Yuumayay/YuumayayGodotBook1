@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bh2tsq82346c"]
+[gd_scene load_steps=7 format=3 uid="uid://bh2tsq82346c"]
 
 [ext_resource type="Texture2D" uid="uid://bx5m3ubk64lx2" path="res://tank/tank_body.png" id="1_kc3ka"]
 [ext_resource type="Script" path="res://tank/tank.gd" id="1_ou16b"]
 [ext_resource type="Texture2D" uid="uid://2ug0y5sg0mqd" path="res://tank/tank_subbody.png" id="2_uf2kh"]
 [ext_resource type="Texture2D" uid="uid://cuml5lwqcxq4b" path="res://tank/tank_cannon.png" id="3_ev0gs"]
 [ext_resource type="Texture2D" uid="uid://diif4wot0k4ja" path="res://tank/tank_cannonbase.png" id="4_m2mht"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5qq8d"]
+radius = 290.172
 
 [node name="tank" type="CharacterBody2D"]
 scale = Vector2(0.2, 0.2)
@@ -33,3 +36,10 @@ texture = ExtResource("4_m2mht")
 
 [node name="camera" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+
+[node name="area" type="Area2D" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="area"]
+shape = SubResource("CircleShape2D_5qq8d")
+
+[connection signal="area_entered" from="area" to="." method="_on_area_area_entered"]
