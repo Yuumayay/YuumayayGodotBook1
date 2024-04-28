@@ -7,6 +7,15 @@ var rotation_velocity := 0.0
 const SPEED = 0.1
 const MOVE_SPEED = 200
 const JUMP_VELOCITY = -400.0
+const BULLET_SPEED = 6
+const BULLET_SPEED_ADD = 0.2
+const BULLET_SPEED_MAX = 12
+const BULLET_SCALE_MUL = 0.25
+const TANK_SCALE = Vector2(0.2,0.2)
+const TANK_SCALE_ADD = Vector2(0.015,0.015)
+const CAMERA_ZOOM = Vector2(1,1)
+const CAMERA_ZOOM_ADD = Vector2(-0.01,-0.01)
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -37,8 +46,8 @@ func shoot():
 	var bullet = bullet_pr.instantiate()
 	bullet.rotation = $cannon.rotation
 	bullet.position = position
-	bullet.scale = scale / 4.0
-	bullet.speed = clamp(6 + (tank_level - 1) / 5.0, 0, 12)
+	bullet.scale = scale * BULLET_SCALE_MUL
+	bullet.speed = clamp(BULLET_SPEED + (tank_level - 1) * BULLET_SPEED_ADD, 0, BULLET_SPEED_MAX)
 	$/root/main/bullets.add_child(bullet)
 
 
@@ -53,8 +62,8 @@ func exp_add(v):
 	if tank_exp >= tank_exp_max:
 		tank_exp -= tank_exp_max
 		tank_level += 1
-		scale = Vector2.ONE * (tank_level - 1) * 0.015 + Vector2.ONE * 0.2
-		$camera.zoom = Vector2.ONE * (tank_level - 1) * -0.01 + Vector2.ONE
+		scale = (tank_level - 1) * TANK_SCALE_ADD + TANK_SCALE
+		$camera.zoom = (tank_level - 1) * CAMERA_ZOOM_ADD + CAMERA_ZOOM
 		tank_exp_max = round(10 + (tank_level - 1) * 5)
 	var expbar = $/root/main/ui/expbar
 	expbar.value = tank_exp
