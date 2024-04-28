@@ -46,8 +46,8 @@ func shoot():
 	var bullet = bullet_pr.instantiate()
 	bullet.rotation = $cannon.rotation
 	bullet.position = position
-	bullet.scale = scale * BULLET_SCALE_MUL
-	bullet.speed = clamp(BULLET_SPEED + (tank_level - 1) * BULLET_SPEED_ADD, 0, BULLET_SPEED_MAX)
+	bullet.scale = scale * 0.25
+	bullet.speed = clamp(6 + (tank_level - 1) * 0.2, 0, 12)
 	$/root/main/bullets.add_child(bullet)
 
 
@@ -62,8 +62,8 @@ func exp_add(v):
 	if tank_exp >= tank_exp_max:
 		tank_exp -= tank_exp_max
 		tank_level += 1
-		scale = (tank_level - 1) * TANK_SCALE_ADD + TANK_SCALE
-		$camera.zoom = (tank_level - 1) * CAMERA_ZOOM_ADD + CAMERA_ZOOM
+		scale = Vector2(0.2,0.2) + (tank_level - 1) * Vector2(0.015,0.015)
+		$camera.zoom = Vector2(1,1) + (tank_level - 1) * Vector2(-0.01,-0.01)
 		tank_exp_max = round(10 + (tank_level - 1) * 5)
 	var expbar = $/root/main/ui/expbar
 	expbar.value = tank_exp
