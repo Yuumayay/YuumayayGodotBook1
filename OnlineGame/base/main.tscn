@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://dkxfu53y5sacx" path="res://base/bg_grid.png" id="1_g0uoq"]
 [ext_resource type="Script" path="res://base/main.gd" id="1_y8qel"]
-[ext_resource type="PackedScene" uid="uid://cj71jrc87trji" path="res://exp/exp.tscn" id="3_lfyap"]
 [ext_resource type="Texture2D" uid="uid://buamfr3s2fef1" path="res://ui/expbar_empty.png" id="4_pa1yc"]
 [ext_resource type="Texture2D" uid="uid://pepgq05w063c" path="res://ui/expbar_full.png" id="5_qeakj"]
+[ext_resource type="PackedScene" uid="uid://c1f40j653r7vf" path="res://ui/title.tscn" id="6_4u5mi"]
 
 [node name="main" type="Node"]
 script = ExtResource("1_y8qel")
@@ -24,9 +24,6 @@ stretch_mode = 1
 [node name="targets" type="Node2D" parent="."]
 
 [node name="exps" type="Node2D" parent="."]
-
-[node name="exp" parent="." instance=ExtResource("3_lfyap")]
-position = Vector2(213, 169)
 
 [node name="ui" type="CanvasLayer" parent="."]
 
@@ -72,3 +69,7 @@ theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 70
 text = "Lv 01"
 horizontal_alignment = 1
+
+[node name="title" parent="." instance=ExtResource("6_4u5mi")]
+
+[connection signal="start_pressed" from="title" to="." method="_on_title_start_pressed"]

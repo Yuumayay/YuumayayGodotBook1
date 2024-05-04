@@ -7,14 +7,6 @@ var rotation_velocity := 0.0
 const SPEED = 0.1
 const MOVE_SPEED = 200
 const JUMP_VELOCITY = -400.0
-const BULLET_SPEED = 6
-const BULLET_SPEED_ADD = 0.2
-const BULLET_SPEED_MAX = 12
-const BULLET_SCALE_MUL = 0.25
-const TANK_SCALE = Vector2(0.2,0.2)
-const TANK_SCALE_ADD = Vector2(0.015,0.015)
-const CAMERA_ZOOM = Vector2(1,1)
-const CAMERA_ZOOM_ADD = Vector2(-0.01,-0.01)
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -46,8 +38,8 @@ func shoot():
 	var bullet = bullet_pr.instantiate()
 	bullet.rotation = $cannon.rotation
 	bullet.position = position
-	bullet.scale = scale * 0.25
-	bullet.speed = clamp(6 + (tank_level - 1) * 0.2, 0, 12)
+	bullet.scale = scale * 0.25 #弾は戦車と連動して大きくなる
+	bullet.speed = clamp(6 + (tank_level - 1) * 0.2, 0, 12) #レベルで弾がはやくなる、最大12
 	$/root/main/bullets.add_child(bullet)
 
 
@@ -62,8 +54,9 @@ func exp_add(v):
 	if tank_exp >= tank_exp_max:
 		tank_exp -= tank_exp_max
 		tank_level += 1
-		scale = Vector2(0.2,0.2) + (tank_level - 1) * Vector2(0.015,0.015)
-		$camera.zoom = Vector2(1,1) + (tank_level - 1) * Vector2(-0.01,-0.01)
+		#レベルで戦車が大きくなってズームアウト
+		scale = Vector2(0.2,0.2) + (tank_level - 1) * Vector2(0.015,0.015) 
+		$camera.zoom = Vector2(1,1) + (tank_level - 1) * Vector2(-0.01,-0.01) 
 		tank_exp_max = round(10 + (tank_level - 1) * 5)
 	var expbar = $/root/main/ui/expbar
 	expbar.value = tank_exp

@@ -42,4 +42,9 @@ position_smoothing_enabled = true
 [node name="shape" type="CollisionShape2D" parent="area"]
 shape = SubResource("CircleShape2D_5qq8d")
 
+[node name="tankname" type="Label" parent="."]
+offset_top = -355.0
+offset_right = 40.0
+offset_bottom = -332.0
+
 [connection signal="area_entered" from="area" to="." method="_on_area_area_entered"]
