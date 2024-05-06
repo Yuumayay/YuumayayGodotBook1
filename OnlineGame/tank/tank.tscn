@@ -43,8 +43,14 @@ position_smoothing_enabled = true
 shape = SubResource("CircleShape2D_5qq8d")
 
 [node name="tankname" type="Label" parent="."]
-offset_top = -355.0
-offset_right = 40.0
-offset_bottom = -332.0
+offset_left = -215.0
+offset_top = -385.0
+offset_right = 240.0
+offset_bottom = -248.0
+theme_override_colors/font_outline_color = Color(0.298039, 0.298039, 0.478431, 1)
+theme_override_constants/outline_size = 50
+theme_override_font_sizes/font_size = 100
+text = "No Name"
+horizontal_alignment = 1
 
 [connection signal="area_entered" from="area" to="." method="_on_area_area_entered"]

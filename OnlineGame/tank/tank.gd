@@ -14,7 +14,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var tank_exp := 0
 var tank_exp_max := 10
 var tank_level := 1
-
+var tank_name := ""
 
 func _physics_process(delta):
 	var direction = Input.get_axis("ui_left", "ui_right")
