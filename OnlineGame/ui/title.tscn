@@ -72,4 +72,12 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_4rqbn")
 placeholder_text = "Enter your name..."
 alignment = 1
 
+[node name="room" type="Button" parent="."]
+offset_left = 17.0
+offset_top = 16.0
+offset_right = 75.0
+offset_bottom = 47.0
+text = "部屋をつくる"
+
 [connection signal="pressed" from="start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="room" to="." method="_on_room_pressed"]

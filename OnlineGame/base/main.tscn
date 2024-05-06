@@ -72,4 +72,9 @@ horizontal_alignment = 1
 
 [node name="title" parent="." instance=ExtResource("6_4u5mi")]
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://tank/tank.tscn")
+spawn_path = NodePath("../players")
+
+[connection signal="room_pressed" from="title" to="." method="_on_title_room_pressed"]
 [connection signal="start_pressed" from="title" to="." method="_on_title_start_pressed"]
