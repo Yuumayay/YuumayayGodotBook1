@@ -1,9 +1,8 @@
 extends Node2D
 
-var expball_pr = preload("res://exp/exp.tscn")
-
 var speed := 6.0
 var lifetime := 3.0
+var player_id := 0
 
 func _physics_process(delta):
 	position += Vector2.from_angle(rotation) * speed
@@ -11,14 +10,15 @@ func _physics_process(delta):
 	if lifetime <= 0.0:
 		queue_free()
 
-
 func _on_hitbox_area_entered(area):
 	var body = area.get_parent()
 	if body is Target:
-		body.queue_free()
+		body.damaged.emit()
 		queue_free()
-		for i in range(randi_range(3,5)):
-			var expball = expball_pr.instantiate()
-			expball.position = body.position
-			expball.lerp_position = body.position + Vector2(randf_range(-50, 50), randf_range(-50, 50))
-			$/root/main/exps.add_child.call_deferred(expball)
+	
+	if body is Tank:
+		if body.player_id == multiplayer.get_unique_id(): #自分の戦車か？
+			if body.player_id != player_id: #自分が撃った弾ではないとき
+				body.damaged.emit(int(str(name)))
+				queue_free()
+				
