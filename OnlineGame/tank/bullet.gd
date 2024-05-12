@@ -1,24 +1,34 @@
 extends Node2D
 
-var speed := 6.0
+@export var speed := 6.0
 var lifetime := 3.0
-var player_id := 0
+@export var init_position : Vector2
+@export var player_id := 0
 
+func _ready():
+	position = init_position
+	
 func _physics_process(delta):
 	position += Vector2.from_angle(rotation) * speed
 	lifetime -= delta
-	if lifetime <= 0.0:
+	if lifetime <= 0.0 and multiplayer.is_server():
 		queue_free()
+
+@rpc("any_peer")
+func delete_this():
+	queue_free()
 
 func _on_hitbox_area_entered(area):
 	var body = area.get_parent()
 	if body is Target:
-		body.damaged.emit()
-		queue_free()
-	
+		#自分の弾のとき
+		if player_id == multiplayer.get_unique_id():
+			body.damaged.emit()
+			delete_this.rpc_id(1)
+		
 	if body is Tank:
-		if body.player_id == multiplayer.get_unique_id(): #自分の戦車か？
-			if body.player_id != player_id: #自分が撃った弾ではないとき
-				body.damaged.emit(int(str(name)))
-				queue_free()
+		#当たったのが自分の戦車で、自分の弾ではないとき
+		if body.player_id == multiplayer.get_unique_id() and player_id != multiplayer.get_unique_id() :
+			body.damaged.emit()
+			delete_this.rpc_id(1)
 				

@@ -29,11 +29,11 @@ func _on_title_start_pressed(entername):
 		
 		await multiplayer.connected_to_server #接続完了まで待つ
 	else:
-		$/root/main.destroy.rpc_id(1, multiplayer.get_unique_id())
+		destroy.rpc_id(1, multiplayer.get_unique_id())
 		await get_tree().create_timer(0.5).timeout
 		
 	tank_spawn.rpc_id(1) # 部屋をつくった人に、戦車スポーンをお願いする
-		
+	
 func _on_title_room_pressed():
 	# 部屋をつくる （サーバー）
 	var peer = ENetMultiplayerPeer.new()

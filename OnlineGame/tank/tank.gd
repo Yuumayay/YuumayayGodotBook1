@@ -18,15 +18,17 @@ var tank_exp := 0
 var tank_exp_max := 10
 var tank_level := 1
 var player_id := 0
+@export var lerp_position : Vector2
 
 func _enter_tree():
 	player_id = int(str(name))
 	set_multiplayer_authority(player_id)
 
 func _ready():
+	damaged.connect(_on_damaged)
 	if player_id == multiplayer.get_unique_id(): #自分の戦車か？
 		$tankname.text = $/root/main/title/entername.text
-		damaged.connect(_on_damaged)
+		exp_add(0)
 	else: #ほかの戦車
 		$camera.enabled = false
 		set_physics_process(false)
@@ -50,22 +52,25 @@ func _physics_process(delta):
 		var bullet_scale = scale * 0.25 #弾は戦車と連動して大きくなる
 		var bullet_position = position
 		var bullet_rotation = $cannon.rotation
-		var bullet_id = randi()
-		for id in multiplayer.get_peers(): #自分以外の全員にshootしたと送る
-			shoot.rpc_id(id, bullet_position, bullet_rotation, bullet_scale, bullet_speed, bullet_id)
-		shoot(bullet_position, bullet_rotation, bullet_scale, bullet_speed, bullet_id) #自分のshootを実行
+		
+		shoot.rpc_id(1, bullet_position, bullet_rotation, bullet_scale, bullet_speed)
 
 	move_and_slide()
+	lerp_position = position
 
-@rpc("any_peer") # 全員発信可、遊びに来た人にも発信可
-func shoot(bullet_position, bullet_rotation, bullet_scale, bullet_speed, bullet_id):
+func _process(delta):
+	if player_id != multiplayer.get_unique_id():
+		position = lerp(position, lerp_position, 0.1)
+
+@rpc("any_peer") 
+func shoot(bullet_position, bullet_rotation, bullet_scale, bullet_speed):
 	var bullet = bullet_pr.instantiate()
-	bullet.position = bullet_position
+	bullet.init_position = bullet_position
 	bullet.rotation = bullet_rotation
 	bullet.scale = bullet_scale
 	bullet.speed = bullet_speed
 	bullet.player_id = player_id
-	bullet.name = str(bullet_id)
+	bullet.name = str(randi())
 	$/root/main/bullets.add_child(bullet)
 
 func _on_area_area_entered(area):
@@ -92,35 +97,29 @@ func exp_add(v):
 	var level_label = $/root/main/ui/level
 	exp_label.text = "%d / %d" % [tank_exp, tank_exp_max]
 	level_label.text = "Lv %02d" % tank_level
-		
+	
 @rpc("any_peer")
-func spawn_exp():
+func destroyed(exp_num):
+	# 破壊された状態にする
 	set_physics_process(false) #入力不可
 	$hitbox/shape.disabled = true #当たり判定無効化
 	$area/shape.disabled = true #当たり判定無効化
 	set_multiplayer_authority(1) #所有権を戻す
-	modulate.a = 0.1
+	modulate.a = 0.1 #薄く表示する
 	
-	for i in range(tank_level * 20):
+	#経験値玉をばらまく
+	for i in range(exp_num):
 		var expball = expball_pr.instantiate()
 		expball.position = position
 		expball.lerp_position = position + Vector2(randf_range(-200, 200), randf_range(-200, 200))
 		$/root/main/exps.add_child.call_deferred(expball)
-	
-@rpc("any_peer")
-func delete_bullet(del_bullet_id):
-	if $/root/main/bullets.has_node(str(del_bullet_id)):
-		$/root/main/bullets.get_node(str(del_bullet_id)).queue_free()
 
-func _on_damaged(bullet_id):
-	#当たった弾は全員の画面から弾消し
-	for id in multiplayer.get_peers():
-		delete_bullet.rpc_id(id, bullet_id)
-		
+func _on_damaged():
 	#全員に経験値ばらまき
+	var exp_num = tank_level * 20
 	for id in multiplayer.get_peers(): 
-		spawn_exp.rpc_id(id)
-	spawn_exp.call_deferred()
+		destroyed.rpc_id(id, exp_num)
+	destroyed.call_deferred(exp_num)
 	
 	await get_tree().create_timer(2).timeout
 	$/root/main/title.show()	
