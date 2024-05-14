@@ -6,11 +6,14 @@ const SERVER_IP = "127.0.0.1" #部屋の住所
 var tank_pr = preload("res://tank/tank.tscn")
 var target_pr = preload("res://target/target.tscn")
 
+const TARGET_MAX := 50
+
 func _ready():
 	while true:
-		var target = target_pr.instantiate()
-		target.position = Vector2(randf_range(-1000, 1000), randf_range(-1000, 1000))
-		$targets.add_child(target)
+		if $targets.get_child_count() <= TARGET_MAX:
+			var target = target_pr.instantiate()
+			target.position = Vector2(randf_range(-1000, 1000), randf_range(-1000, 1000))
+			$targets.add_child(target)
 		await get_tree().create_timer(1).timeout
 	
 @rpc("any_peer")

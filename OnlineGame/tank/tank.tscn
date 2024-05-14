@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://bh2tsq82346c"]
+[gd_scene load_steps=13 format=3 uid="uid://bh2tsq82346c"]
 
 [ext_resource type="Texture2D" uid="uid://bx5m3ubk64lx2" path="res://tank/tank_body.png" id="1_kc3ka"]
 [ext_resource type="Script" path="res://tank/tank.gd" id="1_ou16b"]
 [ext_resource type="Texture2D" uid="uid://2ug0y5sg0mqd" path="res://tank/tank_subbody.png" id="2_uf2kh"]
 [ext_resource type="Texture2D" uid="uid://cuml5lwqcxq4b" path="res://tank/tank_cannon.png" id="3_ev0gs"]
 [ext_resource type="Texture2D" uid="uid://diif4wot0k4ja" path="res://tank/tank_cannonbase.png" id="4_m2mht"]
+[ext_resource type="AudioStream" uid="uid://tv0vvljknycp" path="res://tank/shoot.ogg" id="6_tticd"]
+[ext_resource type="AudioStream" uid="uid://bcto2rcv7yc6d" path="res://tank/exp_get.ogg" id="7_spskm"]
+[ext_resource type="AudioStream" uid="uid://ch23iu5d68flj" path="res://tank/level_up.ogg" id="8_1nir0"]
+[ext_resource type="AudioStream" uid="uid://cog3t3wq66afl" path="res://tank/tank_break.ogg" id="9_4c8oq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5qq8d"]
 radius = 290.172
@@ -28,6 +32,12 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath(".:position")
 properties/5/spawn = true
 properties/5/replication_mode = 1
+properties/6/path = NodePath("body/main:modulate")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("body/sub:modulate")
+properties/7/spawn = true
+properties/7/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p3qwv"]
 size = Vector2(330, 300)
@@ -47,6 +57,7 @@ modulate = Color(0.52549, 0.603922, 1, 1)
 texture = ExtResource("2_uf2kh")
 
 [node name="cannon" type="Node2D" parent="."]
+z_index = 1
 
 [node name="cannon" type="Sprite2D" parent="cannon"]
 texture = ExtResource("3_ev0gs")
@@ -85,5 +96,17 @@ replication_config = SubResource("SceneReplicationConfig_6tlsl")
 position = Vector2(8.94069e-06, -1.07288e-05)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_p3qwv")
+
+[node name="shoot_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_tticd")
+
+[node name="exp_get" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_spskm")
+
+[node name="level_up" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_1nir0")
+
+[node name="break" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_4c8oq")
 
 [connection signal="area_entered" from="area" to="." method="_on_area_area_entered"]

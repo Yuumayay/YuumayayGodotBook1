@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5wpe713ro1sr"]
+[gd_scene load_steps=7 format=3 uid="uid://b5wpe713ro1sr"]
 
 [ext_resource type="Texture2D" uid="uid://dkxfu53y5sacx" path="res://base/bg_grid.png" id="1_g0uoq"]
 [ext_resource type="Script" path="res://base/main.gd" id="1_y8qel"]
 [ext_resource type="Texture2D" uid="uid://buamfr3s2fef1" path="res://ui/expbar_empty.png" id="4_pa1yc"]
 [ext_resource type="Texture2D" uid="uid://pepgq05w063c" path="res://ui/expbar_full.png" id="5_qeakj"]
 [ext_resource type="PackedScene" uid="uid://c1f40j653r7vf" path="res://ui/title.tscn" id="6_4u5mi"]
+[ext_resource type="AudioStream" uid="uid://cfsauktu7n0xq" path="res://target/target_break.ogg" id="6_v1oqv"]
 
 [node name="main" type="Node"]
 script = ExtResource("1_y8qel")
@@ -79,6 +80,9 @@ spawn_path = NodePath("../players")
 [node name="BulletSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://tank/bullet.tscn")
 spawn_path = NodePath("../bullets")
+
+[node name="target_break" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_v1oqv")
 
 [connection signal="room_pressed" from="title" to="." method="_on_title_room_pressed"]
 [connection signal="start_pressed" from="title" to="." method="_on_title_start_pressed"]

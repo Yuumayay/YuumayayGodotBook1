@@ -20,13 +20,24 @@ var tank_level := 1
 var player_id := 0
 @export var lerp_position : Vector2
 
+var shoot_cooldown := 0.0
+const SHOOT_COOLDOWN_TIME := 0.3
+
 func _enter_tree():
 	player_id = int(str(name))
 	set_multiplayer_authority(player_id)
 
 func _ready():
+	position = Vector2(randf_range(-750, 750), randf_range(-750, 750))
 	damaged.connect(_on_damaged)
 	if player_id == multiplayer.get_unique_id(): #自分の戦車か？
+		var main_col := Color("b4c9ff")
+		var sub_col := Color("869aff")
+		var rand := randi_range(0, 10) * 0.1
+		main_col.h += rand
+		sub_col.h += rand
+		$body/main.modulate = main_col
+		$body/sub.modulate = sub_col
 		$tankname.text = $/root/main/title/entername.text
 		exp_add(0)
 	else: #ほかの戦車
@@ -46,15 +57,18 @@ func _physics_process(delta):
 		velocity = lerp(velocity, Vector2.ZERO, delta * 10)
 	$body.rotation += rotation_velocity
 	$cannon.look_at(get_global_mouse_position())
-	
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and shoot_cooldown < 0:
+		$shoot_sound.play()
+		
+		shoot_cooldown = SHOOT_COOLDOWN_TIME
+		
 		var bullet_speed = clamp(6 + (tank_level - 1) * 0.2, 0, 12)#レベルで弾がはやくなる、最大12
 		var bullet_scale = scale * 0.25 #弾は戦車と連動して大きくなる
-		var bullet_position = position
+		var bullet_position = $cannon/cannon/shotpoint.global_position
 		var bullet_rotation = $cannon.rotation
 		
 		shoot.rpc_id(1, bullet_position, bullet_rotation, bullet_scale, bullet_speed)
-
+	shoot_cooldown -= delta
 	move_and_slide()
 	lerp_position = position
 
@@ -78,11 +92,13 @@ func _on_area_area_entered(area):
 	if body is Exp:
 		body.queue_free()
 		if player_id == multiplayer.get_unique_id(): #自分の戦車
+			$exp_get.play()
 			exp_add(1)
 
 func exp_add(v):
 	tank_exp += v
 	if tank_exp >= tank_exp_max:
+		$level_up.play()
 		tank_exp -= tank_exp_max
 		tank_level += 1
 		#レベルで戦車が大きくなってズームアウト
@@ -100,6 +116,8 @@ func exp_add(v):
 	
 @rpc("any_peer")
 func destroyed(exp_num):
+	$break.play()
+	
 	# 破壊された状態にする
 	set_physics_process(false) #入力不可
 	$hitbox/shape.disabled = true #当たり判定無効化
@@ -122,4 +140,4 @@ func _on_damaged():
 	destroyed.call_deferred(exp_num)
 	
 	await get_tree().create_timer(2).timeout
-	$/root/main/title.show()	
+	$/root/main/title.show()

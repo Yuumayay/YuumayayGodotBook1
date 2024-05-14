@@ -9,7 +9,11 @@ var expball_pr = preload("res://exp/exp.tscn")
 func _ready():
 	damaged.connect(_on_damaged)
 
+func _process(delta):
+	rotation += delta
+
 func _on_damaged():
+	$/root/main/target_break.play()
 	queue_free()
 	for i in range(randi_range(3,5)):
 		var expball = expball_pr.instantiate()

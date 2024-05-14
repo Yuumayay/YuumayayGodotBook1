@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dayhsfggtrbb3"]
 
-[ext_resource type="Texture2D" uid="uid://b60b06c71q4ma" path="res://tank/bullet.png" id="1_wt1eh"]
 [ext_resource type="Script" path="res://tank/bullet.gd" id="1_xokq2"]
+[ext_resource type="Texture2D" uid="uid://b60b06c71q4ma" path="res://tank/bullet.png" id="2_cwwxb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mjfmy"]
 radius = 260.768
@@ -29,7 +29,7 @@ script = ExtResource("1_xokq2")
 
 [node name="spr" type="Sprite2D" parent="."]
 modulate = Color(0, 0.792157, 1, 1)
-texture = ExtResource("1_wt1eh")
+texture = ExtResource("2_cwwxb")
 
 [node name="hitbox" type="Area2D" parent="."]
 
