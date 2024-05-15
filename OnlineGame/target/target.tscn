@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbbanil0trr1j"]
+
+[ext_resource type="Texture2D" uid="uid://drbuokuywmmbq" path="res://target/target1.png" id="1_6xsb7"]
+[ext_resource type="Script" path="res://target/target.gd" id="1_11p73"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjoin"]
+size = Vector2(200, 200)
+
+[node name="target" type="Node2D"]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_11p73")
+
+[node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(1, 0.447059, 0.380392, 1)
+texture = ExtResource("1_6xsb7")
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_jjoin")
