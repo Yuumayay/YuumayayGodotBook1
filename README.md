@@ -1,7 +1,6 @@
 ## ゆるっとはじめるGodot Engineゲームプログラミング①～④ サポートサイト
-
-![1章](https://github.com/Yuumayay/YuumayayGodotBook1/assets/3530659/b9804073-3a47-4e64-9179-479f3696c5c7)
-![4章](https://github.com/Yuumayay/YuumayayGodotBook1/assets/3530659/1b753bda-b9e9-4ede-9c77-e183d2cab88f)
+<img alt="1章" src="https://github.com/Yuumayay/YuumayayGodotBook1/assets/3530659/b9804073-3a47-4e64-9179-479f3696c5c7" width="20%">
+<img alt="4章" src="https://github.com/Yuumayay/YuumayayGodotBook1/assets/3530659/1b753bda-b9e9-4ede-9c77-e183d2cab88f" width="20%">
 
 ### 説明
 
