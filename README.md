@@ -113,3 +113,4 @@ get_tree().change_scene_to_file("res://stage1.tscn")
 
 ### 素材集の不足
 2024/07/29 2Dアクションの素材集にcoin.png、ground.pngが欠けていたため修正
+2025/01/05 2Dアクションの素材集にtakarabako.pngが欠けていたため修正
